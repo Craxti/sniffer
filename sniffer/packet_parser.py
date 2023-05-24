@@ -159,3 +159,20 @@ def parse_packet(data):
             return parse_icmpv6_header(data[54:])
 
     raise ValueError("Unsupported protocol or incomplete data.")
+
+
+def filter_packets(packets, protocol=None, source_ip=None, destination_ip=None, source_port=None, destination_port=None):
+    filtered_packets = []
+    for packet in packets:
+        if protocol is not None and packet['protocol'] != protocol:
+            continue
+        if source_ip is not None and packet['source_ip'] != source_ip:
+            continue
+        if destination_ip is not None and packet['destination_ip'] != destination_ip:
+            continue
+        if source_port is not None and packet['source_port'] != source_port:
+            continue
+        if destination_port is not None and packet['destination_port'] != destination_port:
+            continue
+        filtered_packets.append(packet)
+    return filtered_packets
