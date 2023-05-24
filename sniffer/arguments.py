@@ -2,6 +2,7 @@ import argparse
 import psutil
 import sys
 
+
 def validate_interface(interface):
     interfaces = [iface.name for iface in psutil.net_if_stats().values() if iface.isup]
     if interface not in interfaces:
