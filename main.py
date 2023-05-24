@@ -11,7 +11,20 @@ def main():
     try:
         sniffer.setup_sniffer()
         sniffer.start_sniffing()
-        input("Press Enter to stop sniffing...")
+
+        # Main packet sniffing loop
+        while True:
+            packet = sniffer.get_packet(0)
+            if packet is None:
+                continue
+
+            # Parse Ethernet and IP headers
+            ethernet_header = parse_ethernet_header(packet)
+            ip_header = parse_ip_header(packet)
+
+            # Analyze the packet
+            analyze_packet(packet)
+
     except KeyboardInterrupt:
         print("Sniffing interrupted.")
     finally:

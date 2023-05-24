@@ -8,13 +8,18 @@ class Sniffer:
     def __init__(self, interface):
         self.interface = interface
         self.running = False
+        self.captured_packets = None
 
     def setup_sniffer(self):
-        pass  # Нет необходимости в настройке сниффера с использованием Scapy
+        pass  # No need for setup with Scapy
 
     def start_sniffing(self):
         self.running = True
-        sniff(prn=self._handle_packet, iface=self.interface)
+        captured_packets = sniff(prn=self._handle_packet, iface=self.interface)
+        self.captured_packets = captured_packets
+
+        for packet in captured_packets:
+            self._handle_packet(packet)
 
     def stop_sniffing(self):
         self.running = False
@@ -50,7 +55,7 @@ class Sniffer:
                     icmp_type = packet[ICMP].type
                     icmp_code = packet[ICMP].code
 
-                # Вывод информации о пакете в терминал
+                # Output packet information to the terminal
                 print("Ethernet Header:")
                 print(f"Destination MAC: {destination_mac}")
                 print(f"Source MAC: {source_mac}")
@@ -80,8 +85,8 @@ class Sniffer:
                     print(f"Type: {icmp_type}")
                     print(f"Code: {icmp_code}")
 
-                # Дополнительная обработка пакета
-                # Сохранение пакета в файл для последующего анализа в папку reports
+                # Additional packet processing
+                # Save the packet to a file for further analysis in the "reports" folder
                 self.save_packet(packet)
 
         except Exception as e:
@@ -89,16 +94,22 @@ class Sniffer:
 
     @staticmethod
     def save_packet(packet):
-        # Проверяем наличие папки "reports", иначе создаем ее
+        # Check if the "reports" folder exists, otherwise create it
         if not os.path.exists("reports"):
             os.makedirs("reports")
 
-        # Генерируем имя файла для сохранения пакета (можно использовать, например, текущую дату и время)
+        # Generate a file name to save the packet (you can use, for example, the current date and time)
         filename = os.path.join("reports", "packet.pcap")
 
-        # Сохраняем пакет в файл
+        # Save the packet to the file
         with open(filename, "ab") as file:
             file.write(bytes(packet))
 
     def cleanup_sniffer(self):
-        pass  # Нет необходимости в очистке сниффера с использованием Scapy
+        pass  # No need for cleanup with Scapy
+
+    def get_packet(self, index):
+        if 0 <= index < len(self.captured_packets):
+            return self.captured_packets[index]
+        else:
+            return None
