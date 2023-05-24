@@ -1,12 +1,13 @@
 from sniffer.arguments import parse_arguments
 from sniffer.sniffer import Sniffer
-from sniffer.packet_parser import parse_ethernet_header, parse_ip_header
+from sniffer.packet_parser import PacketParser
 from sniffer.network_analyzer import analyze_packet
 
 
 def main():
     args = parse_arguments()
     sniffer = Sniffer(args.interface)
+    parser = PacketParser()
 
     try:
         sniffer.setup_sniffer()
@@ -18,12 +19,11 @@ def main():
             if packet is None:
                 continue
 
-            # Parse Ethernet and IP headers
-            ethernet_header = parse_ethernet_header(packet)
-            ip_header = parse_ip_header(packet)
+            # Parse the packet
+            parsed_packet = parser.parse_packet(packet)
 
             # Analyze the packet
-            analyze_packet(packet)
+            analyze_packet(parsed_packet)
 
     except KeyboardInterrupt:
         print("Sniffing interrupted.")

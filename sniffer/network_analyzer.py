@@ -1,5 +1,5 @@
 import logging
-from sniffer.packet_parser import parse_ethernet_header, parse_ip_header
+from sniffer.packet_parser import PacketParser
 
 
 def setup_logger():
@@ -32,8 +32,8 @@ def analyze_packet(packet):
 
     try:
         # Parse packet headers
-        destination_mac, source_mac, ethernet_type = parse_ethernet_header(packet)
-        version, header_length, ttl, protocol, source_ip, destination_ip = parse_ip_header(packet)
+        destination_mac, source_mac, ethernet_type = PacketParser()
+        version, header_length, ttl, protocol, source_ip, destination_ip = PacketParser()
 
         # Perform additional analysis and processing of the packet
         # Implement your own traffic analysis algorithms to detect issues or anomalous activity
