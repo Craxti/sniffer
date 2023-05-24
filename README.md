@@ -57,19 +57,3 @@ FAQ: Frequently Asked Questions.
 Changelog: Version history and release notes.
 Roadmap: Planned features and future development.
 Feel free to customize the README file to suit your project's specific needs and requirements.
-
-
-
-sniffer/
-├──logs
-├──reports
-├── sniffer/
-│   ├── __init__.py
-│   ├── arguments.py
-│   ├── sniffer.py
-│   ├── packet_parser.py
-│   ├── network_analyzer.py
-│   └── utils.py
-├──test/
-│    ├──reports
-└── main.py
