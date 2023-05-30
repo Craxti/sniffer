@@ -4,7 +4,7 @@ Short description or overview of the project.
 
 ![Python Version](https://img.shields.io/badge/python-3.8+-blue?style=for-the-badge&logo=python)
 ![OS](https://img.shields.io/badge/OS-GNU%2FLinux-red?style=for-the-badge&logo=linux)
-[![CodeFactor Grade]([https://img.shields.io/codefactor/grade/Craxti/EONRaider/sniffer?label=CodeFactor&logo=codefactor&style=for-the-badge](https://img.shields.io/codefactor/grade/github/Craxti/sniffer?label=CodeFactor&logo=codefactor&style=for-the-badge))]([https://www.codefactor.io/repository/github/Craxti/sniffer](https://www.codefactor.io/repository/github/craxti/sniffer))
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/Craxti/sniffer?label=CodeFactor&logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/Craxti/sniffer)
 [![License](https://img.shields.io/github/license/EONRaider/Packet-Sniffer?style=for-the-badge)](https://github.com/EONRaider/Packet-Sniffer/blob/master/LICENSE)
 
 ## Table of Contents
