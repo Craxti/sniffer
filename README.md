@@ -19,7 +19,7 @@ Short description or overview of the project.
 
 Instructions on how to install and set up the project. Include any prerequisites, dependencies, or configuration steps.
 
-    git clone https://github.com/username/repository.git
+    git clone https://github.com/Craxti/sniffer.git
 
     cd project-directory
 
